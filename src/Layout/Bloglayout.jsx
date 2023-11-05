@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import Navber from "../Shared-Component/Navber";
-import { NavLink } from "react-router-dom";
 import Sideber from "../Shared-Component/Sideber";
+import Footer from "../Shared-Component/Footer";
 
 const Bloglayout = ({children}) => {
   return (
@@ -14,8 +14,9 @@ const Bloglayout = ({children}) => {
           {/* Page content here */}
             <Navber></Navber>
             
-          
             {children}
+
+            <Footer></Footer>
 
         </div>
         <Sideber></Sideber>

@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 import "./Navcss.css";
 const Navber = () => {
   return (
-    <div className="w-full lg:py-5 bg-slate-200">
-      <div className="max-w-7xl mx-auto navbar">
+    <div className="w-full py-2 lg:py-5 bg-slate-200">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex-1 lg:hidden">
           <label
             htmlFor="my-drawer-3"
@@ -25,7 +25,7 @@ const Navber = () => {
             </svg>
           </label>
         </div>
-        <div className="flex-none lg:flex-1 px-2 mx-2">
+        <div className="flex-none lg:flex-1 px-2 mx-2 lg:px-0 lg:mx-0">
           <div className="flex items-center">
             <h1 className="font-bold text-5xl text-sky-600">I</h1>
             <span className="text-4xl font-sans font-bold">.blo<span className="text-sky-600">G</span></span>
