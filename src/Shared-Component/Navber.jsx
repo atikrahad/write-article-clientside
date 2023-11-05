@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navcss.css";
 const Navber = () => {
   return (
@@ -78,9 +78,9 @@ const Navber = () => {
             </NavLink>
 
             <div className="pl-3">
-              <button className="btn bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
+              <Link to="/login"><button className="btn bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
                 Login
-              </button>
+              </button></Link>
             </div>
           </div>
         </div>

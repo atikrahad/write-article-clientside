@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navcss.css";
 
 const Sideber = () => {
@@ -13,9 +13,9 @@ const Sideber = () => {
         {/* Sidebar content here */}
 
         <div className="py-3">
-          <button className=" py-1 px-3 bg-sky-600 rounded-sm border-2 border-sky-600 text-white hover:bg-transparent hover:rounded-sm">
+          <Link to="/login"><button className=" py-1 px-3 bg-sky-600 rounded-sm border-2 border-sky-600 text-white hover:bg-transparent hover:rounded-sm">
             Login
-          </button>
+          </button></Link>
         </div>
 
         <NavLink
