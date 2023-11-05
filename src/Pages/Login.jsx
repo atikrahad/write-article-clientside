@@ -11,7 +11,7 @@ const Login = () => {
         setOpen(open)
     }
 
-    var emalicon = <AiOutlineMail size={10}></AiOutlineMail>
+    
 
   return (
     <div className="h-full py-16 bg-sky-100 flex items-center justify-center">
