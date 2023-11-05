@@ -1,13 +1,14 @@
 
-import './App.css'
+import { Outlet } from 'react-router-dom'
+import Bloglayout from './Layout/Bloglayout'
 
 function App() {
   
 
   return (
-    <>
-      
-    </>
+      <Bloglayout>
+        <Outlet></Outlet>
+      </Bloglayout>  
   )
 }
 
