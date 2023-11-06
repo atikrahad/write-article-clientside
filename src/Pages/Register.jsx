@@ -1,47 +1,51 @@
 import { Link } from "react-router-dom";
 import loginimg from "../assets/Image/8850917.jpg";
-import { AiOutlineMail, AiOutlineUser, AiOutlineLock, AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiOutlineUser,
+  AiOutlineLock,
+  AiFillEyeInvisible,
+  AiFillEye,
+} from "react-icons/ai";
 import { useContext, useState } from "react";
 import { Authinfo } from "../Shared-Component/Authprovider";
 
 const Register = () => {
   const [open, setOpen] = useState("!open");
-  const {handleRegister, setError, error} = useContext(Authinfo)
+  const { handleRegister, setError, error } = useContext(Authinfo);
 
   const handleshowPass = (open) => {
     setOpen(open);
   };
 
-  const handleregister = e =>{
-    e.preventDefault()
+  const handleregister = (e) => {
+    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    setError('')
+    setError("");
 
-    if(password.length < 6){
-      return setError('Password should be at least 6 characters')
-    }
-    else if(!/[A-Z]/.test(password)){
-      return setError('Password should be a Capital latter')
+    if (password.length < 6) {
+      return setError("Password should be at least 6 characters");
+    } else if (!/[A-Z]/.test(password)) {
+      return setError("Password should be a Capital latter");
     }
     // eslint-disable-next-line no-useless-escape
-    else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)){
-      return setError('Password should be a special character')
+    else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+      return setError("Password should be a special character");
     }
 
     handleRegister(email, password)
-    .then(userCredential => {
-      const userinfo = userCredential.user;
-      console.log(userinfo);
-    })
-    .catch(error => {
-      const errorMessage = error.code.split('/');
-      const message = errorMessage.slice(1, errorMessage.length)
-      setError(message.join())
-    });
-    
-  }
+      .then((userCredential) => {
+        const userinfo = userCredential.user;
+        console.log(userinfo);
+      })
+      .catch((error) => {
+        const errorMessage = error.code.split("/");
+        const message = errorMessage.slice(1, errorMessage.length);
+        setError(message.join());
+      });
+  };
 
   return (
     <div className="h-full py-16 bg-sky-100 flex items-center justify-center">
@@ -76,7 +80,7 @@ const Register = () => {
                 </div>
                 <div className="relative">
                   <input
-                    type={open ? "text" : "password"}
+                    type={open ? "password" : "text"}
                     placeholder="password"
                     name="password"
                     className="border-b-2 bg-transparent my-2 w-[88%] mx-auto  ml-8 px-1 outline-none border-sky-600"
@@ -88,9 +92,9 @@ const Register = () => {
                     onClick={() => handleshowPass(!open)}
                   >
                     {open ? (
-                      <AiFillEyeInvisible></AiFillEyeInvisible>
-                    ) : (
                       <AiFillEye></AiFillEye>
+                    ) : (
+                      <AiFillEyeInvisible></AiFillEyeInvisible>
                     )}
                   </div>
                 </div>
@@ -100,9 +104,9 @@ const Register = () => {
                     Register
                   </button>
                   <div>
-                  <Link to="/login" className="">
-                    Have account <span className="underline">login</span>
-                  </Link>
+                    <Link to="/login" className="underline">
+                      Have account login
+                    </Link>
                   </div>
                 </div>
               </form>
