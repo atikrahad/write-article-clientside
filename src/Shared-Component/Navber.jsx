@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navcss.css";
 const Navber = () => {
   return (
-    <div className="w-full py-2 lg:py-5 bg-slate-200">
+    <div className="w-full py-2 lg:py-5 bg-[#e2e8f0e6]">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex-1 lg:hidden">
           <label
@@ -78,7 +78,7 @@ const Navber = () => {
             </NavLink>
 
             <div className="pl-3">
-              <Link to="/login"><button className="btn bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
+              <Link to="/login"><button className="btn text-white bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
                 Login
               </button></Link>
             </div>

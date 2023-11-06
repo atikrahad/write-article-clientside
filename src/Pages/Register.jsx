@@ -53,7 +53,7 @@ const Register = () => {
                   <button className="py-2  font-semibold px-5  bg-sky-600 rounded-sm text-white">
                     Login
                   </button>
-                  <Link to="/register" className="">
+                  <Link to="/login" className="">
                     Have account <span className="underline">login</span>
                   </Link>
                 </div>
