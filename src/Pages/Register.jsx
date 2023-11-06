@@ -12,7 +12,7 @@ import { Authinfo } from "../Shared-Component/Authprovider";
 
 const Register = () => {
   const [open, setOpen] = useState("!open");
-  const { handleRegister, setError, error } = useContext(Authinfo);
+  const { handleRegister,user, setError, error } = useContext(Authinfo);
 
   const handleshowPass = (open) => {
     setOpen(open);
@@ -22,7 +22,9 @@ const Register = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
+    if(user){
+      return setError("alredy loged in")
+    }
     setError("");
 
     if (password.length < 6) {

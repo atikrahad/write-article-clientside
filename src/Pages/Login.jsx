@@ -11,7 +11,7 @@ import { Authinfo } from "../Shared-Component/Authprovider";
 
 const Login = () => {
   const [open, setOpen] = useState("!open");
-  const { handleLogin, error, setError,handleGooglesignin } = useContext(Authinfo);
+  const { handleLogin, error,user, setError,handleGooglesignin } = useContext(Authinfo);
 
   const handleshowPass = (open) => {
     setOpen(open);
@@ -22,6 +22,9 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    if(user){
+      return setError("alredy loged in")
+    }
 
     handleLogin(email, password)
       .then((user) => {
@@ -34,6 +37,9 @@ const Login = () => {
   };
 
   const handlegoogleuser = ()=> {
+    if(user){
+      return setError("alredy loged in")
+    }
     handleGooglesignin()
     .then(user => {
       console.log(user);

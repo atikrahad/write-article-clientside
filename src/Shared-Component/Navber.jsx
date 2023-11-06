@@ -1,6 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navcss.css";
+import { useContext } from "react";
+import { Authinfo } from "./Authprovider";
 const Navber = () => {
+  const { user, userinfo, handleLogoutuser } = useContext(Authinfo);
+  const {pic} = userinfo;
+  const handleLogout = ()=> {
+    handleLogoutuser()
+  }
   return (
     <div className="w-full py-2 lg:py-5 bg-[#e2e8f0e6]">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -28,7 +35,9 @@ const Navber = () => {
         <div className="flex-none lg:flex-1 px-2 mx-2 lg:px-0 lg:mx-0">
           <div className="flex items-center">
             <h1 className="font-bold text-5xl text-sky-600">I</h1>
-            <span className="text-4xl font-sans font-bold">.blo<span className="text-sky-600">G</span></span>
+            <span className="text-4xl font-sans font-bold">
+              .blo<span className="text-sky-600">G</span>
+            </span>
           </div>
         </div>
         <div className="flex-none hidden lg:block">
@@ -78,9 +87,17 @@ const Navber = () => {
             </NavLink>
 
             <div className="pl-3">
-              <Link to="/login"><button className="btn text-white bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
-                Login
-              </button></Link>
+              {user ? 
+                    <div onClick={handleLogout}>
+                      <img className="w-12 rounded-full" src={pic} alt="" />
+                    </div>
+                  : (
+                <Link to="/login">
+                  <button className="btn text-white bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
+                    Login
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
