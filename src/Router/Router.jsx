@@ -23,7 +23,8 @@ const router = createBrowserRouter([
       },
       {
         path: "allblog",
-        element: <Allblog></Allblog>
+        element: <Allblog></Allblog>,
+        loader: ()=> fetch("http://localhost:5000/postcount")
       },
       {
         path: "wishlist",
