@@ -6,7 +6,7 @@ const Header = () => {
         background: `linear-gradient(to bottom, rgba(226, 232, 240, .999999999), rgba(117, 19, 93, 0.3)), url(${bannerimg})`,
         backgroundSize: "cover",
       }}
-      className=" w-full max-h-[60vh]"
+      className=" w-full"
     >
       <div className="flex py-20 items-center  mx-auto max-w-7xl">
       <div className="space-y-5 w-1/2">
