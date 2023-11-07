@@ -37,6 +37,7 @@ const Addblog = () => {
                 </label>
                 <input
                   type="text"
+                  maxLength={40}
                   name="title"
                   placeholder="blog title"
                   className="input w-full input-bordered"
@@ -51,6 +52,7 @@ const Addblog = () => {
                 <textarea
                   name="sort_description"
                   className="input w-full input-bordered"
+                  maxLength={100}
                   cols="60"
                   rows="10"
                 ></textarea>
