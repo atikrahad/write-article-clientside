@@ -1,4 +1,25 @@
+import { useContext } from "react";
+import { Authinfo } from "../Shared-Component/Authprovider";
+import axios from "axios";
+
 const Addblog = () => {
+  const {userinfo} = useContext(Authinfo)
+  const {email, pic} = userinfo;
+  const handleblogPost = e => {
+    e.preventDefault()
+    const form = e.target;
+    const title = form.title.value;
+    const sort_description = form.sort_description.value;
+    const img = form.img.value;
+    const category = form.category.value;
+    const description = form.description.value;
+
+    const blogpost = {title,email,pic, sort_description, img, category, description}
+    
+    axios.post('http://localhost:5000/blogpost', blogpost)
+    .then(data => console.log(data.data))
+    
+  }
   return (
     <div className="">
       <div className="py-10 bg-base-200">
@@ -9,17 +30,17 @@ const Addblog = () => {
             </h1>
           </div>
           <div className="md:w-[80%] mx-auto  rounded-md bg-base-100">
-            <form className="">
+            <form onSubmit={handleblogPost} className="">
               <div className=" w-full">
                 <label className="label">
                   <span className="label-text">Blog Title</span>
                 </label>
                 <input
                   type="text"
+                  name="title"
                   placeholder="blog title"
                   className="input w-full input-bordered"
                   required
-                  name="name"
                 />
               </div>
 
@@ -28,7 +49,7 @@ const Addblog = () => {
                   <span className="label-text">Short Description</span>
                 </label>
                 <textarea
-                  name="description"
+                  name="sort_description"
                   className="input w-full input-bordered"
                   cols="60"
                   rows="10"
