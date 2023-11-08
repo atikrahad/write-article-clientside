@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Blogdata from "../Components/Blogdata";
 import bannerimg from "../assets/Image/banner.jpg";
 
+
 const Allblog = () => {
   const { count } = useLoaderData();
   const [pagesize, setPagesize] = useState(5);
@@ -38,9 +39,11 @@ const Allblog = () => {
     
     useEffect(() => {
       fetch(
-        `http://localhost:5000/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`
-      )
-        .then((res) => res.json())
+        `http://localhost:5000/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`, {
+            method: 'GET',
+            withCredentials:true
+        }
+      ) .then(res => res.json())
         .then((data) => {
             setBlogsdata(data);
             

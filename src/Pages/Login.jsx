@@ -8,28 +8,44 @@ import {
 } from "react-icons/ai";
 import { useContext, useState } from "react";
 import { Authinfo } from "../Shared-Component/Authprovider";
+import axios from "axios";
 
 const Login = () => {
   const [open, setOpen] = useState("!open");
-  const { handleLogin, error,user, setError,handleGooglesignin } = useContext(Authinfo);
-  const location = useLocation()
-console.log(location);
+  const { handleLogin, error, user, setError, handleGooglesignin } =
+    useContext(Authinfo);
+  const location = useLocation();
+  console.log(location);
   const handleshowPass = (open) => {
     setOpen(open);
   };
-  const navigete = useNavigate()
+  const navigete = useNavigate();
   const handleLoginuser = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    if(user){
-      return setError("alredy loged in")
+    if (user) {
+      return setError("alredy loged in");
     }
 
     handleLogin(email, password)
-      .then((user) => {
-        console.log(user);
+      .then((userlog) => {
+        console.log(userlog);
+        const user = {email}
+
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (location.state !== null) {
+              navigete(location.state);
+            } else {
+              navigete("/");
+            }
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -37,24 +53,32 @@ console.log(location);
       });
   };
 
-  const handlegoogleuser = ()=> {
-    if(user){
-      return setError("alredy loged in")
+  const handlegoogleuser = () => {
+    if (user) {
+      return setError("alredy loged in");
     }
     handleGooglesignin()
-    .then(user => {
-      console.log(user);
-      if(location.state!== null) {
-        navigete(location.state)
-      }else{
-        navigete('/')
-      }
-    })
-    .catch(error => {
-      console.log(error);
-      setError(error.code)
-    })
-  }
+      .then((userinfo) => {
+        const email = userinfo.user.email;
+        const usertoken = { email };
+        axios
+          .post("http://localhost:5000/jwt", usertoken, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (location.state !== null) {
+              navigete(location.state);
+            } else {
+              navigete("/");
+            }
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.code);
+      });
+  };
 
   return (
     <div className="h-full py-16 bg-sky-100 flex items-center justify-center">
@@ -110,7 +134,10 @@ console.log(location);
                 </div>
               </form>
               <div>
-                <button onClick={handlegoogleuser} className="btn w-full my-2 border-sky-600 hover:border-sky-600">
+                <button
+                  onClick={handlegoogleuser}
+                  className="btn w-full my-2 border-sky-600 hover:border-sky-600"
+                >
                   Login with{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
