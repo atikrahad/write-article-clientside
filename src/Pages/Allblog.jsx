@@ -35,11 +35,7 @@ const Allblog = () => {
     
   }
   
-    //   useEffect(() => {
-    //     fetch(`http://localhost:5000/allpost?page=${curentpage}&size=${pagesize}`)
-    //       .then((res) => res.json())
-    //       .then((data) => setBlogsdata(data));
-    //   }, [curentpage, pagesize]);
+    
     useEffect(() => {
       fetch(
         `http://localhost:5000/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`
@@ -52,7 +48,6 @@ const Allblog = () => {
     }, [curentpage, pagesize, filter,searchi]);
 
     
-    console.log(searchi);
   return (
     <div>
       <div

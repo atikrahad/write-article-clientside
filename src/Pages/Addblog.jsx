@@ -3,23 +3,33 @@ import { Authinfo } from "../Shared-Component/Authprovider";
 import axios from "axios";
 
 const Addblog = () => {
-  const {userinfo} = useContext(Authinfo)
-  const {email, pic} = userinfo;
-  const handleblogPost = e => {
-    e.preventDefault()
+  const { userinfo } = useContext(Authinfo);
+  const { email, pic, name } = userinfo;
+  
+  const handleblogPost = (e) => {
+    e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const sort_description = form.sort_description.value;
     const img = form.img.value;
     const category = form.category.value;
     const description = form.description.value;
+    const currentdate = new Date();
+    
+    const blogpost = {
+      title,
+      email,
+      pic,
+      sort_description,
+      img,
+      category,
+      description,currentdate,name
+    };
 
-    const blogpost = {title,email,pic, sort_description, img, category, description}
-    
-    axios.post('http://localhost:5000/blogpost', blogpost)
-    .then(data => console.log(data.data))
-    
-  }
+    axios
+      .post("http://localhost:5000/blogpost", blogpost)
+      .then((data) => console.log(data.data));
+  };
   return (
     <div className="">
       <div className="py-10 bg-base-200">
@@ -99,7 +109,6 @@ const Addblog = () => {
                   rows="10"
                 ></textarea>
               </div>
-              
 
               <div className="form-control w-full">
                 <input

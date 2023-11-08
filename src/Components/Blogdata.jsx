@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BsBookmarkPlus } from "react-icons/bs";
 
 const Blogdata = ({ data }) => {
-  const { title,img,category,sort_description,  } = data;
+  const { title,img,category,_id, sort_description,  } = data;
   return (
     <div>
       <div className="card card-side lg:h-60 bg-base-100 shadow-xl">
@@ -20,7 +20,7 @@ const Blogdata = ({ data }) => {
           <p className="py-1 px-3 bg-green-500 rounded-md text-white ">{category}</p>
           <p className="text-justify">{sort_description}</p>
           <div className="w-full flex items-center justify-between">
-            <div><Link className="font-bold text-sky-600">Read more</Link></div>
+            <div><Link to={`/blogdetails/${_id}`} className="font-bold text-sky-600">Read more</Link></div>
             <button><BsBookmarkPlus></BsBookmarkPlus></button>
           </div>
         </div>

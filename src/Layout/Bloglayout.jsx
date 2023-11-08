@@ -11,10 +11,12 @@ const Bloglayout = ({ children }) => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Page content here */}
-          <Headroom>
+          <Headroom className="lg:contents hidden">
             <Navber></Navber>
           </Headroom>
-
+          <div className="lg:hidden">
+          <Navber ></Navber>
+          </div>
           {children}
 
           <Footer></Footer>
