@@ -9,6 +9,7 @@ import Register from "../Pages/Register";
 import Login from "../Pages/Login";
 import Blogdetails from "../Pages/Blogdetails";
 import Privateroute from "./Privateroute";
+import Update from "../Pages/Update";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         path: "blogdetails/:id",
         element: <Privateroute><Blogdetails></Blogdetails></Privateroute>,
         loader: ({params})=> fetch(`http://localhost:5000/allpost/${params.id}`)
+      },
+      {
+        path: "update",
+        element: <Privateroute><Update></Update></Privateroute>
       }
     ],
   },

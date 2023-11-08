@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Authinfo } from "../Shared-Component/Authprovider";
 import axios from "axios";
 
@@ -58,7 +58,7 @@ const Blogdetails = () => {
       <h1 className="text-3xl py-5 font-bold">{title}</h1>
       <h2 className="text-2xl py-3 font-semibold">{sort_description}</h2>
       <p>{description}</p>
-      {userinfo.email === email? <button className="py-2 px-3 bg-green-500 rounded-md my-3 text-white font-bold">Update blog</button> :(
+      {userinfo.email === email? <Link state={result} to="/update"><button className="py-2 px-3 bg-green-500 rounded-md my-3 text-white font-bold">Update blog</button></Link> :(
         <div className="py-10">
           <form onSubmit={handleComment} className="">
             <div className="flex gap-3">
