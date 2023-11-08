@@ -8,6 +8,7 @@ import Feauturesblog from "../Pages/Feauturesblog";
 import Register from "../Pages/Register";
 import Login from "../Pages/Login";
 import Blogdetails from "../Pages/Blogdetails";
+import Privateroute from "./Privateroute";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "addblog",
-        element: <Addblog></Addblog>
+        element: <Privateroute><Addblog></Addblog></Privateroute>
       },
       {
         path: "allblog",
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "blogdetails/:id",
-        element: <Blogdetails></Blogdetails>,
+        element: <Privateroute><Blogdetails></Blogdetails></Privateroute>,
         loader: ({params})=> fetch(`http://localhost:5000/allpost/${params.id}`)
       }
     ],

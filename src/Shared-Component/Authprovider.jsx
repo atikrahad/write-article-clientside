@@ -40,13 +40,13 @@ const Authprovider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
-      const email = user.email;
-      const pic = user.photoURL;
-      const name = user.displayName;
+      const email = user?.email;
+      const pic = user?.photoURL;
+      const name = user?.displayName;
       const userinfoo = { email, pic, name};
       setUserinfo(userinfoo);
-      setUser(user);
       setLoading(false)
+      setUser(user);
     });
     return unSubscribe;
   }, []);
@@ -60,6 +60,8 @@ const Authprovider = ({ children }) => {
     user,
     userinfo,
     handleLogoutuser,
+    loading,
+    setLoading
   };
   console.log(user);
   return <Authinfo.Provider value={info}>{children}</Authinfo.Provider>;

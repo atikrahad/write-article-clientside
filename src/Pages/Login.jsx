@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginimg from "../assets/Image/8850917.jpg";
 import {
   AiOutlineMail,
@@ -12,11 +12,12 @@ import { Authinfo } from "../Shared-Component/Authprovider";
 const Login = () => {
   const [open, setOpen] = useState("!open");
   const { handleLogin, error,user, setError,handleGooglesignin } = useContext(Authinfo);
-
+  const location = useLocation()
+console.log(location);
   const handleshowPass = (open) => {
     setOpen(open);
   };
-
+  const navigete = useNavigate()
   const handleLoginuser = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -43,6 +44,11 @@ const Login = () => {
     handleGooglesignin()
     .then(user => {
       console.log(user);
+      if(location.state!== null) {
+        navigete(location.state)
+      }else{
+        navigete('/')
+      }
     })
     .catch(error => {
       console.log(error);
