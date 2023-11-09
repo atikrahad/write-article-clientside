@@ -18,7 +18,7 @@ const Allblog = () => {
   const [filter, setFilter] = useState("All");
   const [searchi, setSearchi] = useState("");
 
-  const [loadwishlist, setLoadwishlist] = useState([])
+  
 
 
   const pagescount = Math.ceil(count / pagesize);
@@ -45,7 +45,7 @@ const Allblog = () => {
     setSearchi(searchinput);
   };
 
-  console.log(ids, loadwishlist);
+  
 
   useEffect(() => {
     fetch(
@@ -63,7 +63,7 @@ const Allblog = () => {
 
 
   
-  console.log(loadwishlist);
+  
   
   
 const handleBookmark = (data) => {
