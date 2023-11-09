@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Blogdata from "../Components/Blogdata";
 import bannerimg from "../assets/Image/banner.jpg";
 
+import { Authinfo } from "../Shared-Component/Authprovider";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Allblog = () => {
   const { count } = useLoaderData();
+  const { ids } = useContext(Authinfo);
   const [pagesize, setPagesize] = useState(5);
   const [curentpage, setCurrentpage] = useState(1);
   const [blogsdata, setBlogsdata] = useState([]);
   const [filter, setFilter] = useState("All");
   const [searchi, setSearchi] = useState("");
+
+  const [loadwishlist, setLoadwishlist] = useState([])
+
+
   const pagescount = Math.ceil(count / pagesize);
   let pages = [];
   for (let i = 1; i <= pagescount; i++) {
@@ -25,32 +35,79 @@ const Allblog = () => {
   const handleFilter = (e) => {
     const selected = e.target.value;
     setFilter(selected);
-    setSearchi('')
+    setSearchi("");
   };
-  const handlesearchBytitle = e => {
-    e.preventDefault()
+  const handlesearchBytitle = (e) => {
+    e.preventDefault();
     const form = e.target;
     const searchinput = form.text.value;
-    form.reset()
-    setSearchi(searchinput)
-    
-  }
-  
-    
-    useEffect(() => {
-      fetch(
-        `http://localhost:5000/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`, {
-            method: 'GET',
-            withCredentials:true
-        }
-      ) .then(res => res.json())
-        .then((data) => {
-            setBlogsdata(data);
-            
-        });
-    }, [curentpage, pagesize, filter,searchi]);
+    form.reset();
+    setSearchi(searchinput);
+  };
 
-    
+  console.log(ids, loadwishlist);
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`,
+      {
+        method: "GET",
+        withCredentials: true,
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setBlogsdata(data);
+      });
+  }, [curentpage, pagesize, filter, searchi]);
+
+
+  
+  console.log(loadwishlist);
+  
+  
+const handleBookmark = (data) => {
+
+  fetch(`http://localhost:5000/wishlist`)
+        .then(res => res.json())
+        .then(wdata => {
+          const finded = wdata.find(item => item._id === data._id)
+            
+          if(!finded){
+      
+            axios.post("http://localhost:5000/wishlist", data).then((res) => {
+              console.log(res.data);
+              toast.success("Added wishlist", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                
+              });
+              
+            });
+          }
+            
+          else{
+            toast.warn('Already added', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              });
+            return
+          }
+        }) 
+  };
+
   return (
     <div>
       <div
@@ -101,7 +158,11 @@ const Allblog = () => {
 
       <div className="grid gap-5 py-5 lg:grid-cols-2 grid-cols-1 max-w-7xl mx-auto">
         {blogsdata.map((data) => (
-          <Blogdata key={data._id} data={data}></Blogdata>
+          <Blogdata
+            key={data._id}
+            data={data}
+            handleBookmark={handleBookmark}
+          ></Blogdata>
         ))}
       </div>
 
@@ -140,6 +201,7 @@ const Allblog = () => {
             <option value="20">20</option>
           </select>
         </div>
+        <ToastContainer></ToastContainer>
       </div>
     </div>
   );

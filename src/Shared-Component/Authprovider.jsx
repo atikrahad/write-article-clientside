@@ -16,6 +16,9 @@ const Authprovider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
   const [userinfo, setUserinfo] = useState({});
+  const [ids, setIds] = useState('')
+  const [promis, setPromis] = useState(true)
+
 
   const handleRegister = (email, password) => {
     setLoading(true)
@@ -61,7 +64,10 @@ const Authprovider = ({ children }) => {
     userinfo,
     handleLogoutuser,
     loading,
-    setLoading
+    setLoading,
+    setIds,
+    ids,
+    
   };
   console.log(user);
   return <Authinfo.Provider value={info}>{children}</Authinfo.Provider>;
