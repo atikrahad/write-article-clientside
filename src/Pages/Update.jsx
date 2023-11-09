@@ -28,7 +28,7 @@ const Update = () => {
       currentdate,
     };
 
-    fetch(`http://localhost:5000/blogpost/${_id}`, {
+    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/blogpost/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

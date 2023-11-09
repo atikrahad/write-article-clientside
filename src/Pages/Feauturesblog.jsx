@@ -6,7 +6,7 @@ const Feauturesblog = () => {
   
 
   useEffect(() => {
-    fetch("http://localhost:5000/feautured")
+    fetch("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/feautured")
       .then((res) => res.json())
       .then((data) => setLoadfeautured(data));
   }, []);

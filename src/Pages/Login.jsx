@@ -35,7 +35,7 @@ const Login = () => {
         const user = {email}
 
         axios
-          .post("http://localhost:5000/jwt", user, {
+          .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -62,7 +62,7 @@ const Login = () => {
         const email = userinfo.user.email;
         const usertoken = { email };
         axios
-          .post("http://localhost:5000/jwt", usertoken, {
+          .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/jwt", usertoken, {
             withCredentials: true,
           })
           .then((res) => {

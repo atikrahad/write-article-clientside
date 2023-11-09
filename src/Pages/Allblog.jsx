@@ -49,7 +49,7 @@ const Allblog = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`,
+      `https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`,
       {
         method: "GET",
         withCredentials: true,
@@ -68,14 +68,14 @@ const Allblog = () => {
   
 const handleBookmark = (data) => {
 
-  fetch(`http://localhost:5000/wishlist`)
+  fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist`)
         .then(res => res.json())
         .then(wdata => {
           const finded = wdata.find(item => item._id === data._id)
             
           if(!finded){
       
-            axios.post("http://localhost:5000/wishlist", data).then((res) => {
+            axios.post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist", data).then((res) => {
               console.log(res.data);
               toast.success("Added wishlist", {
                 position: "bottom-right",

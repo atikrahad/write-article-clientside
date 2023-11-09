@@ -31,13 +31,13 @@ const Blogdetails = () => {
     const commentdata = { blogId, authorname, authorpic, comment };
     form.reset()
     axios
-      .post("http://localhost:5000/comment", commentdata)
+      .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/comment", commentdata)
       .then((res) => console.log(res));
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/comment?id=${blogId}`)
+      .get(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/comment?id=${blogId}`)
       .then((res) => setComments(res.data));
   }, [blogId]);
 

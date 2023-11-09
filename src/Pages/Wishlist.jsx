@@ -5,7 +5,7 @@ const Wishlist = () => {
   const [loaddata, setLoaddata] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/wishlist`)
+    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist`)
       .then((res) => res.json())
       .then((data) => {
         setLoaddata(data);
@@ -14,7 +14,7 @@ const Wishlist = () => {
 
   const handleRemove = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/wishlist/${id}`, {
+    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

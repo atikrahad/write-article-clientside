@@ -6,19 +6,19 @@ import { ToastContainer, toast } from "react-toastify";
 const Recentblog = () => {
   const [loadrecent, setloadrecent] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/recentpost")
+    fetch("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/recentpost")
       .then((res) => res.json())
       .then((data) => setloadrecent(data));
   }, []);
 
   const handleBookmark = (data) => {
-    fetch(`http://localhost:5000/wishlist`)
+    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist`)
       .then((res) => res.json())
       .then((wdata) => {
         const finded = wdata.find((item) => item._id === data._id);
 
         if (!finded) {
-          axios.post("http://localhost:5000/wishlist", data).then((res) => {
+          axios.post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist", data).then((res) => {
             console.log(res.data);
             toast.success("Added wishlist", {
               position: "bottom-right",

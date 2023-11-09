@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: "allblog",
         element: <Allblog></Allblog>,
-        loader: ()=> fetch("http://localhost:5000/postcount")
+        loader: ()=> fetch("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/postcount")
       },
       {
         path: "wishlist",
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: "blogdetails/:id",
         element: <Privateroute><Blogdetails></Blogdetails></Privateroute>,
-        loader: ({params})=> fetch(`http://localhost:5000/allpost/${params.id}`)
+        loader: ({params})=> fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/allpost/${params.id}`)
       },
       {
         path: "update",
