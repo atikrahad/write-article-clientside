@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Authinfo } from "../Shared-Component/Authprovider";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Addblog = () => {
   const { userinfo } = useContext(Authinfo);
@@ -15,6 +16,8 @@ const Addblog = () => {
     const category = form.category.value;
     const description = form.description.value;
     const currentdate = new Date();
+
+    form.reset()
     
     const blogpost = {
       title,
@@ -28,7 +31,20 @@ const Addblog = () => {
 
     axios
       .post("http://localhost:5000/blogpost", blogpost)
-      .then((data) => console.log(data.data));
+      .then((data) => {
+        console.log(data.data)
+        toast.success("Successfully added blog", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+      );
   };
   return (
     <div className="">
@@ -119,6 +135,7 @@ const Addblog = () => {
               </div>
             </form>
           </div>
+          <ToastContainer></ToastContainer>
         </div>
       </div>
     </div>

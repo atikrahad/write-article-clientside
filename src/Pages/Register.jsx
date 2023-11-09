@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginimg from "../assets/Image/8850917.jpg";
 import {
   AiOutlineMail,
@@ -9,6 +9,8 @@ import {
 } from "react-icons/ai";
 import { useContext, useState } from "react";
 import { Authinfo } from "../Shared-Component/Authprovider";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../Firebase/firebase";
 
 const Register = () => {
   const [open, setOpen] = useState("!open");
@@ -18,10 +20,14 @@ const Register = () => {
     setOpen(open);
   };
 
+  const navigate = useNavigate()
+
   const handleregister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const name = e.target.name.value;
+    const pic = e.target.pic.value;
     if(user){
       return setError("alredy loged in")
     }
@@ -41,6 +47,17 @@ const Register = () => {
       .then((userCredential) => {
         const userinfo = userCredential.user;
         console.log(userinfo);
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: pic
+        })
+        .then(()=>{
+          navigate('/')
+        })
+        .catch(error => {
+          console.log(error);
+        })
+
       })
       .catch((error) => {
         const errorMessage = error.code.split("/");
@@ -65,6 +82,16 @@ const Register = () => {
                     type="text"
                     name="name"
                     placeholder="full name"
+                    className="border-b-2 bg-transparent w-[88%] ml-8 px-1 my-2 outline-none border-sky-600"
+                    required
+                  />
+                  <AiOutlineUser className="absolute  text-2xl left-0 top-[30%]"></AiOutlineUser>
+                </div>
+                <div className="relative">
+                  <input
+                    type="url"
+                    name="pic"
+                    placeholder="img url must be short"
                     className="border-b-2 bg-transparent w-[88%] ml-8 px-1 my-2 outline-none border-sky-600"
                     required
                   />
