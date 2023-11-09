@@ -1,11 +1,18 @@
 import PropTyoes from "prop-types";
 import { Link } from "react-router-dom";
 import { BsBookmarkPlus } from "react-icons/bs";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const Recentcart = ({ data, handleBookmark }) => {
+    useEffect(() => {
+        Aos.init();
+      }, []);
   const { title, img, category, _id, sort_description } = data;
   return (
-    <div className="card relative rounded-md bg-base-100 shadow-xl">
+    <div className="card relative rounded-md bg-base-100 shadow-xl" data-aos="fade-up"
+    data-aos-duration="3000">
       <figure className="">
         <img className="w-full h-60"
           src={img}

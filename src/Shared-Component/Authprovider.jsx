@@ -17,7 +17,7 @@ const Authprovider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [userinfo, setUserinfo] = useState({});
   const [ids, setIds] = useState('')
-  const [promis, setPromis] = useState(true)
+  
 
 
   const handleRegister = (email, password) => {

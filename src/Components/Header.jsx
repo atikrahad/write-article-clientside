@@ -9,7 +9,7 @@ const Header = () => {
       className=" w-full"
     >
       <div className="flex py-20 items-center  mx-auto max-w-7xl">
-      <div className="space-y-5 w-1/2">
+      <div className="space-y-5 lg:w-1/2">
         
         <h1 className="text-4xl tracking-tighter font-bold">
           Exploring the World of Knowledge

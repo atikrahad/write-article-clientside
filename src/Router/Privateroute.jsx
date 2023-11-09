@@ -2,13 +2,17 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Authinfo } from "../Shared-Component/Authprovider";
 import { Navigate, useLocation } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Privateroute = ({ children }) => {
   const { user, loading } = useContext(Authinfo);
   const location = useLocation()
   console.log(location);
   if (loading) {
-    return <div></div>;
+    return <div>
+      <Skeleton />
+    </div>;
   } else if (user) {
     return children;
   }

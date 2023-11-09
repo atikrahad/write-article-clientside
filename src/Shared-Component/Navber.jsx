@@ -4,10 +4,10 @@ import { useContext } from "react";
 import { Authinfo } from "./Authprovider";
 const Navber = () => {
   const { user, userinfo, handleLogoutuser } = useContext(Authinfo);
-  const {pic} = userinfo;
-  const handleLogout = ()=> {
-    handleLogoutuser()
-  }
+  const { pic } = userinfo;
+  const handleLogout = () => {
+    handleLogoutuser();
+  };
   return (
     <div className="w-full py-2 lg:py-5 bg-[#e2e8f0e6]">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -51,12 +51,14 @@ const Navber = () => {
               Home
             </NavLink>
 
-            <NavLink
-              to="/addblog"
-              className="text-slate-600 font-semibold  py-1 rounded-sm px-3"
-            >
-              Add Blog
-            </NavLink>
+            {user && (
+              <NavLink
+                to="/addblog"
+                className="text-slate-600 font-semibold  py-1 rounded-sm px-3"
+              >
+                Add Blog
+              </NavLink>
+            )}
 
             <NavLink
               to="/allblog"
@@ -79,19 +81,26 @@ const Navber = () => {
               Wishlist
             </NavLink>
 
-            <NavLink
-              to="/register"
-              className="text-slate-600 font-semibold  py-1 rounded-sm px-3"
-            >
-              Register
-            </NavLink>
+            {!user && (
+              <NavLink
+                to="/register"
+                className="text-slate-600 font-semibold  py-1 rounded-sm px-3"
+              >
+                Register
+              </NavLink>
+            )}
 
             <div className="pl-3">
-              {user ? 
-                    <div onClick={handleLogout}>
-                      <img className="w-12 rounded-full" src={pic} alt="" />
-                    </div>
-                  : (
+              {user ? (
+                <div className="flex gap-2">
+                  <img className="w-12 rounded-full" src={pic} alt="" />
+                  <div onClick={handleLogout}>
+                    <button className="btn text-white bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
                 <Link to="/login">
                   <button className="btn text-white bg-sky-600 rounded-md  hover:text-blue-600 hover:rounded-md hover:border-sky-600">
                     Login

@@ -49,7 +49,7 @@ const Recentblog = () => {
 
   return (
     <div className="max-w-7xl py-10 mx-auto">
-      <h1 className="text-4xl font-semibold">Recent post:</h1>
+      <h1 className="text-4xl py-5 font-semibold">Recent post:</h1>
       <div className="grid gap-5 grid-cols-1 md:grid-cols-3">
         {loadrecent.map((data) => (
           <Recentcart key={data._id} data={data} handleBookmark={handleBookmark}></Recentcart>

@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Blogdata from "../Components/Blogdata";
 import bannerimg from "../assets/Image/banner.jpg";
 
-import { Authinfo } from "../Shared-Component/Authprovider";
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,7 +11,7 @@ import axios from "axios";
 
 const Allblog = () => {
   const { count } = useLoaderData();
-  const { ids } = useContext(Authinfo);
+  
   const [pagesize, setPagesize] = useState(5);
   const [curentpage, setCurrentpage] = useState(1);
   const [blogsdata, setBlogsdata] = useState([]);
