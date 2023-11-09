@@ -1,3 +1,4 @@
+import Category from "../Components/Category";
 import Header from "../Components/Header";
 import Recentblog from "../Components/Recentblog";
 import img from "../assets/Image/8850917.jpg";
@@ -24,6 +25,8 @@ const Home = () => {
       <Header></Header>
 
       <Recentblog></Recentblog>
+
+      <Category></Category>
 
       <div
         style={{
