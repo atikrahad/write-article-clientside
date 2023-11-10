@@ -48,16 +48,13 @@ const Allblog = () => {
   
 
   useEffect(() => {
-    fetch(
-      `https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`,
-      {
-        method: "GET",
-        withCredentials: true,
-      }
+    axios.get(
+      `https://blogsite-server.vercel.app/allpost?category=${filter}&page=${curentpage}&size=${pagesize}&title=${searchi}`,
+      
     )
-      .then((res) => res.json())
+      
       .then((data) => {
-        setBlogsdata(data);
+        setBlogsdata(data.data);
       });
   }, [curentpage, pagesize, filter, searchi]);
 
@@ -68,14 +65,14 @@ const Allblog = () => {
   
 const handleBookmark = (data) => {
 
-  fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist`)
+  fetch(`https://blogsite-server.vercel.app/wishlist`)
         .then(res => res.json())
         .then(wdata => {
           const finded = wdata.find(item => item._id === data._id)
             
           if(!finded){
       
-            axios.post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist", data).then((res) => {
+            axios.post("https://blogsite-server.vercel.app/wishlist", data).then((res) => {
               console.log(res.data);
               toast.success("Added wishlist", {
                 position: "bottom-right",

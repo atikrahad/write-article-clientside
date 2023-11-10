@@ -30,7 +30,7 @@ const Addblog = () => {
     };
 
     axios
-      .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/blogpost", blogpost)
+      .post("https://blogsite-server.vercel.app/blogpost", blogpost)
       .then((data) => {
         console.log(data.data)
         toast.success("Successfully added blog", {

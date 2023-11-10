@@ -6,19 +6,19 @@ import { ToastContainer, toast } from "react-toastify";
 const Recentblog = () => {
   const [loadrecent, setloadrecent] = useState([]);
   useEffect(() => {
-    fetch("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/recentpost")
-      .then((res) => res.json())
-      .then((data) => setloadrecent(data));
+    axios.get("https://blogsite-server.vercel.app/recentpost", {withCredentials: true})
+      .then((data) => setloadrecent(data.data));
   }, []);
 
   const handleBookmark = (data) => {
-    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist`)
-      .then((res) => res.json())
+    axios.get(`https://blogsite-server.vercel.app/wishlist`)
+      
       .then((wdata) => {
-        const finded = wdata.find((item) => item._id === data._id);
+        const wishdata = wdata.data;
+        const finded = wishdata.find((item) => item._id === data._id);
 
         if (!finded) {
-          axios.post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist", data).then((res) => {
+          axios.post("https://blogsite-server.vercel.app/wishlist", data).then((res) => {
             console.log(res.data);
             toast.success("Added wishlist", {
               position: "bottom-right",

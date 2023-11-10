@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import Selected from "../Components/Selected";
+import axios from "axios";
 
 const Wishlist = () => {
   const [loaddata, setLoaddata] = useState([]);
 
   useEffect(() => {
-    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist`)
-      .then((res) => res.json())
+    axios.get(`https://blogsite-server.vercel.app/wishlist`)
+      
       .then((data) => {
-        setLoaddata(data);
+        setLoaddata(data.data);
       });
   }, []);
 
   const handleRemove = (id) => {
     console.log(id);
-    fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/wishlist/${id}`, {
+    fetch(`https://blogsite-server.vercel.app/wishlist/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

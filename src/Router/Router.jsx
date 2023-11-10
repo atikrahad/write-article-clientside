@@ -10,11 +10,13 @@ import Login from "../Pages/Login";
 import Blogdetails from "../Pages/Blogdetails";
 import Privateroute from "./Privateroute";
 import Update from "../Pages/Update";
+import Errorpage from "../Pages/Errorpage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <Errorpage></Errorpage>,
     children: [
       {
         index: true,
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "allblog",
         element: <Allblog></Allblog>,
-        loader: ()=> fetch("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/postcount")
+        loader: ()=> fetch("https://blogsite-server.vercel.app/postcount")
       },
       {
         path: "wishlist",
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
       {
         path: "blogdetails/:id",
         element: <Privateroute><Blogdetails></Blogdetails></Privateroute>,
-        loader: ({params})=> fetch(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/allpost/${params.id}`)
+        loader: ({params})=> fetch(`https://blogsite-server.vercel.app/allpost/${params.id}`)
       },
       {
         path: "update",

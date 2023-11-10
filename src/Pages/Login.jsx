@@ -32,20 +32,21 @@ const Login = () => {
     handleLogin(email, password)
       .then((userlog) => {
         console.log(userlog);
+        
         const user = {email}
 
-        axios
-          .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/jwt", user, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-            if (location.state !== null) {
-              navigete(location.state);
-            } else {
-              navigete("/");
-            }
-          });
+        axios.post('https://blogsite-server.vercel.app/jwt', user, {withCredentials: true})
+        .then(res => {
+          console.log(res.data);
+
+          if (location.state !== null) {
+            navigete(location.state);
+          } else {
+            navigete("/");
+          }
+
+        })
+        
       })
       .catch((error) => {
         console.log(error);
@@ -60,19 +61,21 @@ const Login = () => {
     handleGooglesignin()
       .then((userinfo) => {
         const email = userinfo.user.email;
-        const usertoken = { email };
-        axios
-          .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/jwt", usertoken, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-            if (location.state !== null) {
-              navigete(location.state);
-            } else {
-              navigete("/");
-            }
-          });
+
+        const user = {email}
+
+        axios.post('https://blogsite-server.vercel.app/jwt', user, {withCredentials: true})
+        .then(res => {
+          console.log(res.data);
+
+          if (location.state !== null) {
+            navigete(location.state);
+          } else {
+            navigete("/");
+          }
+
+        })
+
       })
       .catch((error) => {
         console.log(error);

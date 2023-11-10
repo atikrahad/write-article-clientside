@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 
@@ -6,9 +7,9 @@ const Feauturesblog = () => {
   
 
   useEffect(() => {
-    fetch("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/feautured")
-      .then((res) => res.json())
-      .then((data) => setLoadfeautured(data));
+    axios.get("https://blogsite-server.vercel.app/feautured")
+      
+      .then((data) => setLoadfeautured(data.data));
   }, []);
 
   let num = 1;

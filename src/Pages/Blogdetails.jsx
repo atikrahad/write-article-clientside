@@ -31,14 +31,20 @@ const Blogdetails = () => {
     const commentdata = { blogId, authorname, authorpic, comment };
     form.reset()
     axios
-      .post("https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/comment", commentdata)
-      .then((res) => console.log(res));
+      .post("https://blogsite-server.vercel.app/comment", commentdata)
+      .then((res) => {
+        console.log(res)
+        
+        
+      });
   };
 
   useEffect(() => {
     axios
-      .get(`https://blogsite-server-1psfon91z-atikrahad1-gmailcom.vercel.app/comment?id=${blogId}`)
-      .then((res) => setComments(res.data));
+      .get(`https://blogsite-server.vercel.app/comment?id=${blogId}`)
+      .then((res) => {
+        setComments(res.data)
+      });
   }, [blogId]);
 
   return (
