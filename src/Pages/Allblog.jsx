@@ -112,7 +112,7 @@ const handleBookmark = (data) => {
           background: `linear-gradient(to bottom, rgba(226, 232, 240, .999999999), rgba(117, 19, 93, 0.3)), url(${bannerimg})`,
           backgroundSize: "cover",
         }}
-        className=" w-full max-h-[60vh]"
+        className=" w-full min-h-[600px] flex items-center "
       >
         <div className="flex py-20 items-center justify-center mx-auto max-w-7xl">
           <div className="flex flex-col items-center space-y-3 justify-center">

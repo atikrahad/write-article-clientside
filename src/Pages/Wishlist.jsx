@@ -27,7 +27,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="max-w-7xl min-h-full mx-auto">
+    <div className="max-w-7xl min-h-[500PX] mx-auto">
       {loaddata.length === 0 && (
         <div className="text-center h-full flex items-center justify-center">
           <h1 className="text-orange-500 text-3xl font-bold">
