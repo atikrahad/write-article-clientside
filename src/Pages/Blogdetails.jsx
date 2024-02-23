@@ -78,7 +78,7 @@ const Blogdetails = () => {
                 <textarea
                   name="comment"
                   required
-                  className="outline-none p-3 border rounded-lg"
+                  className="outline-none w-32 md:w-auto p-3 border rounded-lg"
                   cols="40"
                   placeholder="Write your comment"
                   rows="4"
